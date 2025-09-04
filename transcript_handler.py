@@ -69,4 +69,4 @@ def transcript_pipeline(file_path: str):
 
 
 if __name__ == "__main__":
-    transcript_pipeline("meeting_transcript.txt")
+    transcript_pipeline("data/meeting_transcript.txt")

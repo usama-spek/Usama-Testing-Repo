@@ -26,7 +26,7 @@ deployments:
   entrypoint: transcript_handler.py:transcript_pipeline
 
   parameters:
-    file_path: "meeting_transcript.txt"
+    file_path: "data/meeting_transcript.txt"
 
   work_pool:
     name: demo
