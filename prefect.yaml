@@ -13,9 +13,7 @@ build: null
 push: null
 
 # pull section allows you to provide instructions for cloning this project in remote locations
-pull:
-- prefect.deployments.steps.set_working_directory:
-    directory: /Users/usamasheikh/Documents/Prefect-Demo
+
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
@@ -36,7 +34,7 @@ deployments:
   tags: ["meeting", "analysis"]
   description: "Analyze meeting transcripts with Ollama + Prefect"
 
-  entrypoint: transcript_pipeline.py:transcript_pipeline
+  entrypoint: transcript_handler.py:transcript_pipeline
 
   parameters:
     file_path: "meeting_transcript.txt"
