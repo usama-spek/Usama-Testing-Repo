@@ -4,4 +4,4 @@ __pycache__/
 *.log
 .env
 .prefect/
-.prefect-env/
+prefect-env/
