@@ -1,0 +1,176 @@
+﻿Aug 27, 2025
+Usama / Mike - Transcript
+00:00:00
+ 
+Mike Falanga: the table somewhere in here about files belonging in deal rooms, right?
+Usama Sheikh: Which table file is being it is sharable bundle.
+Mike Falanga: I don't know. I I think there's a table where it says this file belongs in this deal room like a with maybe that's share bundle or bundles sharable bundle.
+Usama Sheikh: Yeah. Like you would have a join of sharable bundle with the sharable content and then you can see that what what is the content that is being attached to it.
+Mike Falanga: Okay. I would love to see an entity relationship diagram with Um, I would love to see an erd with API personalization, API files, sharable content, and sharable bundle to start with. sharable bundle. That sounds like a good job for cursor. Okay, so cool. And we also have flags. Okay. All right. Personalization. We have an API in business terms. I think we have this concept of um cloned, right? like uh you know a spec was cloned from another spec.
+ 
+ 
+00:01:49
+ 
+Usama Sheikh: So it is available to both assets and specs both.
+Mike Falanga: Okay. So when you say specs those are business terms and assets are in API files.
+Usama Sheikh: Yes.
+Mike Falanga: So in API files we have a cloned by or something Okay.
+Usama Sheikh: Yes. No, no, no. In in in in in base tables, we don't have neither in API business terms, we have anything related to cloned by, right? Neither in uh API files, we have some sort that sort of information. We don't have any any information that this spec was cloned by this spec in API business systems or in API files.
+Mike Falanga: Can you open up business terms? I I I thought we did. I thought I've seen one that's like called uh copy from ID or something like that.
+Usama Sheikh: Definition data created by expert hidden sis definition updated definition last added by is person. Nothing.
+Mike Falanga: That's it.
+Usama Sheikh: Yep.
+Mike Falanga: Okay. All right. Okay. So, business terms has is personalized is personal.
+ 
+ 
+00:03:20
+ 
+Usama Sheikh: Yes, you have a flag which says is underscore person_ content.
+Mike Falanga: Is there are there values in any of those?
+Usama Sheikh: Yeah, we do have the values on those. Let me try to go up where is_ personal content is not null. Cool.
+Mike Falanga: All right.
+Usama Sheikh: Uh I like we have nulls and we have false as well.
+Mike Falanga: Are there any truths?
+Usama Sheikh: Yeah, we do have truths as well. Is true.
+Mike Falanga: Can you do equals true or is okay so what okay I don't know what a personal content business term is okay and then we also have is
+Usama Sheikh: You can you can Yes.
+Mike Falanga: personal content in API files And we have in tags we have is deal room.
+Usama Sheikh: Yes. Is deal room tag and in API teams as well we have is deal room team.
+Mike Falanga: Okay. And then team has is deal room.
+Usama Sheikh: I guess I can quickly pull that off. In base top uh in topics we have is deal room tag API tags and in API teams we have SD room_ team
+ 
+ 
+00:05:22
+ 
+Mike Falanga: Okay.
+Usama Sheikh: Now you need to look out about the segment event as well. We haven't checked segment event yet.
+Mike Falanga: Okay, I know we haven't even talked about the segment event. So the se All right, let's go back to the segment event. All right, so this content copied from or whatever.
+Usama Sheikh: Cool content clone.
+Mike Falanga: What is it? Content cloned. Okay. And so we're you're using this.
+Usama Sheikh: I'm not using this. I was using API personalized relation first because we thought we don't have this data available but right now this data is available but uh it's in segment this has everything specs business terms
+Mike Falanga: Oh, okay. Well, what's the difference between this and personalized relation
+Usama Sheikh: and API file files right and that particular table is just related to the SharePoint Google Drive assets. You just confirm that, right?
+Mike Falanga: No, I didn't confirm confirm it.
+Usama Sheikh: You you just confirm that.
+Mike Falanga: Well, you confirmed it.
+Usama Sheikh: No, you said that you are seeing that some sort of share point because we have file store ID in this.
+ 
+ 
+00:06:38
+ 
+Mike Falanga: Oh. Oh. Oh. Oh. Yeah. Yeah. Yeah. Okay. Right. Right. Right. Yes. Yes. Yes. Yes. Correct.
+Usama Sheikh: Cool.
+Mike Falanga: That's so by by confirmed it, that's what the application allows you to do.
+Usama Sheikh: Right.
+Mike Falanga: That's Yeah.
+Usama Sheikh: Right. Right. So this is right.
+Mike Falanga: I don't see a foreign key though to Oh, yeah. I guess there's a foreign key to files. Okay. All right.
+Usama Sheikh: So this is related to the SharePoint Google Drive this particular table. So any personal content that is being created through SharePoint or Google Drive would have a parent uh information around the dashboard as of today. But anything outside of that that could be API business terms or any API files that is just cloned from the wiki won't have that information in the dashboard currently because we didn't knew that we had this data available. Now we got to know that no we do have this data available and this is in segment event that is cont spec backend production.content_cloned.
+ 
+ 
+00:07:36
+ 
+Mike Falanga: All right.
+Usama Sheikh: So this is all the personal content that I have. I was just debugging one of the uh issue that Mel raised yesterday about all of the content had same names. Right? So over here if you see all of these have different ids right clone spec ID is different and two of them have same parent and one has the same is a parent that is like it was so from the base spec I cloned one thing and someone else cloned from my cloned spec on another spec right so you over here. This is the child ID. This is the parent ID. This is the child ID.
+Mike Falanga: Yeah. So it's it's just a hierarchy. It's like this came from this and this came from that.
+Usama Sheikh: Exactly. Exactly. Exactly.
+Mike Falanga: Yeah. Right. Okay. A came from B, C, blah blah blah. Okay. So that relationship is stored in this table and you can't find that relationship anywhere else.
+ 
+ 
+00:08:54
+ 
+Usama Sheikh: Yes. No. No. No. No, no, because in this you have all of the information about the business terms as well as files outside of the SharePoint and Google Drive, right?
+Mike Falanga: You can't get it from like API files and personalized relation like you can't just join and oh right oh dude how did how did relation only contains Google SharePoint not assets. All right. So when you say asset you mean like a native file inside a specket. All right. Okay. Uh like it was uploaded not integrated. That's so freaking stupid.
+Usama Sheikh: Yeah.
+Mike Falanga: Why does how it came into the system mattered? Why? Oh, if I upload it, I can treat it this way, but if it came from Google, I got to treat it a different way.
+Usama Sheikh: Yeah.
+Mike Falanga: No, it just gets into the system. Usama, I'm getting so angry.
+Usama Sheikh: Let's
+Mike Falanga: I don't understand. And I cannot be calm. It's all good. Okay. Uh, okay.
+ 
+ 
+00:10:26
+ 
+Mike Falanga: There's something else you said in there that I lost. So, personalized relation only contains Google and SharePoint. The segment event contains everything.
+Usama Sheikh: business terms.
+Mike Falanga: So, has all.
+Usama Sheikh: Yeah.
+Mike Falanga: So, it has everything.
+Usama Sheikh: Yeah. Let's confirm that as well. One more time. Let's try to pick this up. Let's try impuned.
+Mike Falanga: And there's not only does it have all those different records, you say it also has more data. So it also maintains the relationship. Yeah.
+Usama Sheikh: So yes, and to my surprise right now it seems like it seems like that we actually don't store those
+Mike Falanga: Relationship on what was cloned by what.
+Usama Sheikh: texts in it. those files in it that are related to SharePoint and Google Drive in content cloned the segment event. Yes, I couldn't find any any I I don't understand what is the problem of including just one time stamp value. Not sure about that.
+Mike Falanga: Okay.
+Usama Sheikh: So up till now up till now I couldn't see any personalized content that is available in API_ personalized relation being presented in the segment event of content cloned which means which means shareepoint Google drive parent spec relationship is stored somewhere else and the remaining stock the remaining part API business terms and API files other than the SharePoint outside of the SharePoint and Google Drive is stored in the content_ cloned.
+ 
+ 
+00:12:52
+ 
+Mike Falanga: True or false?
+Usama Sheikh: True.
+Mike Falanga: Wait, no. I have a question. Well, you answered it. uh the you should be able to get the data you need from our database not through the segment event.
+Usama Sheikh: That's true.
+Mike Falanga: Yeah.
+Usama Sheikh: But if if the data is related to some sort of event tracking in sense of like you need to create a okay user click this user click this user click this you are creating a customer journey or some sort of hierarchical journey then go ahead with the segment event we are fine with it but if it is related to the core working of the application which is like rel uh specs uh as It's it's it's more or like like it's not the because this particular thing is not the event tracking. This is the core working of your application like a particular thing is being cloned from your already existing spec it should be stored in that event tracking is based on like button is being clicked. Okay. Fine. You need to track that like where your customer is getting dropped off, where your user is getting dropped off, something like that.
+ 
+ 
+00:14:11
+ 
+Usama Sheikh: These type of insights you need to find. Go ahead. You can you have segment for that but the core working of your application that is the relationships or anything like knowledge checks being created knowledge checks being attempted everything should be done in inside your No we
+Mike Falanga: Don't don't tell me that you have to go to segment events for that data.
+Usama Sheikh: don't we don't Yeah we
+Mike Falanga: Um yeah, preaching to the choir. Um customized deal room. Yeah, you want like segment events would be useful for saying um of all the deal room content that is personalized you know 40% of it is from Google and 15% of those is happening from the deal room directly
+Usama Sheikh: Exactly.
+Mike Falanga: you know and that's the kind of information that segment can tell you they can tell you how it how your application is being used and stuff like that but like the fact that you know this piece of content was created from another piece of content it's stored in your data ates it is in there.
+Usama Sheikh: True.
+ 
+ 
+00:15:13
+ 
+Mike Falanga: It's not like determined through those events. Okay, I got to find a good way to say this and I don't and I'm just flabbergasted at how this has been architected. I mean really I don't understand. Okay, do we did we accomplish what we set out to accomplish?
+Usama Sheikh: Oh, we Yeah, I guess because uh it was more of a discussion what is actually happening.
+Mike Falanga: Yeah, I wanted to really understand and look at this and how Okay, but you so you you can piece together the story so long as that second
+Usama Sheikh: Yeah. Yeah, I can I can I can but the problem though I need to find out a way to incorporate that into our incremental model right I can show you the problem that what we we could face so let's say let's say a content was created on Right now I created a content right 27th of August right 6:02 p.m. Right. personal content created right now on 27th of and with this event this would be available in API_ files right at exactly this time right now on 27th of August list and eventually I I I'm sure that when when I would be creating the person content by by while while cloning something with uh from the already existing spec this
+ 
+ 
+00:16:47
+ 
+Mike Falanga: Mhm.
+Usama Sheikh: event would be triggered right but it won't have the data right now just because segment is 2 hours lag right now on 6:30 p.m.
+Mike Falanga: Yeah. Okay. Yeah.
+Usama Sheikh: My data job would run it will include this particular personal content in base personal content right with parent ID being null right why because I don't have the data until now in
+Mike Falanga: Mhm.
+Usama Sheikh: the segment right after 2 hours after 2 hours I will get the record in segment with the received add date of this 602 because this received add date and the timestamp value inside segment is actually the value when the event was triggered. Right? It was not the value when the segment has inserted the data inside that particular table in in the database.
+Mike Falanga: Okay.
+Usama Sheikh: Right? So now my incremental model would never pick up the value looking at the states because my incremental uh run would check everything that has the time stamp greater than my last run that would be six right and in this I would have the value of 602 right so I need to manipulate the data in a way that I storing the current time stamp of uh some sort of like some some time stamp that when the
+ 
+ 
+00:18:34
+ 
+Mike Falanga: Mhm.
+Usama Sheikh: data is being actually dumped in in this.
+Mike Falanga: Yeah.
+Usama Sheikh: So I I just think more about that that how we can achieve that.
+Mike Falanga: Yeah. I mean, it it's basically like you're doing the job that incremental models is supposed to do, which is figure out what hasn't been imported yet.
+Usama Sheikh: Yes.
+Mike Falanga: I I mean that there there's DBT is supposed to do that for you. It's not like an easy thing, I don't think.
+Usama Sheikh: So we have so so DBT have couple of things right.
+Mike Falanga: Yeah.
+Usama Sheikh: You have some sort of incremental strategy where you are saying okay this is the source this is what is the difference between those two whatever is not available in the present inside this right whereas because we in incremental model we are actually building whole logics using multiple source tables we actually design the incremental logic by ourselves right with playing with the timestamps value.
+Mike Falanga: Okay. All right.
+Usama Sheikh: If I if I if I can show you one one single uh logic over here you see this is the incremental logic for the specs for the fields like you actually need to see the mac created on you
+Mike Falanga: Okay,
+Usama Sheikh: need to check updated on you need to check last edited on. So these are all the values that we need to check when the topic was associated to that particular thing when the team was assigned to that particular respect. So all of those dates needs to be uh come comes into play. So I I'm not sure that how I I'm sure that I can achieve I can resolve this but how I need to think about it.
+Mike Falanga: right. Yeah, it's a your job is a lot harder. Okay, I got to run.
+Usama Sheikh: Cool.
+Mike Falanga: I got to get my dog sitting this remote. His life harder. I just don't understand. I mean, it doesn't even make sense to me. I don't I can't I don't I don't understand the logic behind why it's done the way it was done. That's my problem. I don't get the logic.
+Usama Sheikh: Yeah, no problem.
+Mike Falanga: All right.
+Usama Sheikh: Take care.
+ 
+ 
+Transcription ended after 00:21:39
+
+
+This editable transcript was computer generated and might contain errors. People can also change the text after it was created.
