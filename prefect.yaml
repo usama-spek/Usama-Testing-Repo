@@ -31,3 +31,23 @@ deployments:
     work_queue_name: default
     job_variables: {}
   schedules: []
+- name: transcript-pipeline-deployment
+  version: null
+  tags: ["meeting", "analysis"]
+  description: "Analyze meeting transcripts with Ollama + Prefect"
+
+  entrypoint: transcript_pipeline.py:transcript_pipeline
+
+  parameters:
+    file_path: "meeting_transcript.txt"
+
+  work_pool:
+    name: demo
+    work_queue_name: default
+    job_variables: {}
+
+  storage:
+    github:
+      repository: "usama-spek/prefect-demo"
+      reference: "main"      # branch or tag
+      access_token: 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     # set via PREFECT_GITHUB_ACCESS_TOKEN env var if private
