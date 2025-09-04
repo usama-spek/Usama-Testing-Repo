@@ -1,4 +1,4 @@
-import json
+import json, os
 import pandas as pd
 import ollama
 from prefect import flow, task
@@ -48,9 +48,13 @@ def parse_json(raw_output: str) -> dict:
 def save_to_csv(data: dict, actions_file: str, decisions_file: str):
     df_actions = pd.DataFrame(data.get("action_items", []))
     df_decisions = pd.DataFrame(data.get("decisions", []), columns=["Decision"])
+    output_dir = "/Users/usamasheikh/Documents/prefect-outputs"
+    os.makedirs(output_dir, exist_ok=True)
 
-    df_actions.to_csv(actions_file, index=False)
-    df_decisions.to_csv(decisions_file, index=False)
+    df_actions.to_csv(f"{output_dir}/meeting_actions.csv", index=False)
+    df_decisions.to_csv(f"{output_dir}/meeting_decisions.csv", index=False)
+    # df_actions.to_csv(actions_file, index=False)
+    # df_decisions.to_csv(decisions_file, index=False)
 
     return f"Saved {actions_file} and {decisions_file}"
 
