@@ -48,4 +48,4 @@ deployments:
     github:
       repository: "usama-spek/prefect-demo"
       reference: "main"      # branch or tag
-      access_token: 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     # set via PREFECT_GITHUB_ACCESS_TOKEN env var if private
+      access_token: null     # set via PREFECT_GITHUB_ACCESS_TOKEN env var if private
