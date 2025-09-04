@@ -17,18 +17,7 @@ push: null
 
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
-- name: demo-deployment
-  version: null
-  tags: []
-  concurrency_limit: null
-  description: null
-  entrypoint: odd_even.py:even_or_odd
-  parameters: {}
-  work_pool:
-    name: demo
-    work_queue_name: default
-    job_variables: {}
-  schedules: []
+
 - name: transcript-pipeline-deployment
   version: null
   tags: ["meeting", "analysis"]
