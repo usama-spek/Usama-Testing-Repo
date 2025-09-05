@@ -2,7 +2,7 @@ import json, os
 import pandas as pd
 import ollama
 from prefect import flow, task, get_run_logger
-logger = get_run_logger()
+
 
 @task
 def load_transcript(file_path: str) -> str:
@@ -61,6 +61,7 @@ def save_to_csv(data: dict, actions_file: str, decisions_file: str):
 
 @flow(name="Meeting Transcript Analyzer")
 def transcript_pipeline(file_path: str):
+    logger = get_run_logger()
     transcript = load_transcript(file_path)
     raw_output = analyze_transcript(transcript)
     data = parse_json(raw_output)
@@ -73,7 +74,7 @@ PROCESSED_LOG = os.path.join(OUTPUT_DIR, "processed.log")
 
 @flow(name="All Transcripts Analyzer")
 def all_transcripts_flow(data_dir: str = "data"):
-    
+    logger = get_run_logger()
     # Load already processed files
     processed = set()
     if os.path.exists(PROCESSED_LOG):
