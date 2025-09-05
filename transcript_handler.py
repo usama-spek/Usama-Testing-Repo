@@ -1,8 +1,8 @@
 import json, os
 import pandas as pd
 import ollama
-from prefect import flow, task
-
+from prefect import flow, task, get_run_logger
+logger = get_run_logger()
 
 @task
 def load_transcript(file_path: str) -> str:
@@ -65,7 +65,7 @@ def transcript_pipeline(file_path: str):
     raw_output = analyze_transcript(transcript)
     data = parse_json(raw_output)
     result = save_to_csv(data, "meeting_actions.csv", "meeting_decisions.csv")
-    print(result)
+    logger.info(result)
 
 OUTPUT_DIR = "/Users/usamasheikh/Documents/prefect-outputs"
 PROCESSED_LOG = os.path.join(OUTPUT_DIR, "processed.log")
@@ -73,6 +73,7 @@ PROCESSED_LOG = os.path.join(OUTPUT_DIR, "processed.log")
 
 @flow(name="All Transcripts Analyzer")
 def all_transcripts_flow(data_dir: str = "data"):
+    
     # Load already processed files
     processed = set()
     if os.path.exists(PROCESSED_LOG):
@@ -84,7 +85,7 @@ def all_transcripts_flow(data_dir: str = "data"):
 
     for file in files:
         if file in processed:
-            print(f"⏭️ Skipping already processed file: {file}")
+            logger.info(f"⏭️ Skipping already processed file: {file}")
             continue
 
         # Run your existing flow as subflow
