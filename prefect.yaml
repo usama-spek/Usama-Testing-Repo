@@ -26,7 +26,7 @@ deployments:
   entrypoint: transcript_handler.py:all_transcripts_flow
 
   parameters:
-    file_path: "data"
+    data_dir: "data"
 
   work_pool:
     name: demo
