@@ -67,6 +67,35 @@ def transcript_pipeline(file_path: str):
     result = save_to_csv(data, "meeting_actions.csv", "meeting_decisions.csv")
     print(result)
 
+OUTPUT_DIR = "/Users/usamasheikh/Documents/prefect-outputs"
+PROCESSED_LOG = os.path.join(OUTPUT_DIR, "processed.log")
+
+
+@flow(name="All Transcripts Analyzer")
+def all_transcripts_flow(data_dir: str = "data"):
+    # Load already processed files
+    processed = set()
+    if os.path.exists(PROCESSED_LOG):
+        with open(PROCESSED_LOG) as f:
+            processed = set(line.strip() for line in f)
+
+    # Scan repo data folder
+    files = [f for f in os.listdir(data_dir) if f.endswith(".txt")]
+
+    for file in files:
+        if file in processed:
+            print(f"⏭️ Skipping already processed file: {file}")
+            continue
+
+        # Run your existing flow as subflow
+        transcript_pipeline(f"{data_dir}/{file}")
+
+        # Append to processed log
+        with open(PROCESSED_LOG, "a") as f:
+            f.write(file + "\n")
+
 
 if __name__ == "__main__":
-    transcript_pipeline("data/meeting_transcript.txt")
+    all_transcripts_flow("data")
+
+

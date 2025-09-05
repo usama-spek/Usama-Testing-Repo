@@ -23,10 +23,10 @@ deployments:
   tags: ["meeting", "analysis"]
   description: "Analyze meeting transcripts with Ollama + Prefect"
 
-  entrypoint: transcript_handler.py:transcript_pipeline
+  entrypoint: transcript_handler.py:All Transcripts Analyzer
 
   parameters:
-    file_path: "data/meeting_transcript.txt"
+    file_path: "data"
 
   work_pool:
     name: demo
