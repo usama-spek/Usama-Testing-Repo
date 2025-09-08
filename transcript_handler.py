@@ -51,8 +51,8 @@ def save_to_csv(data: dict, actions_file: str, decisions_file: str):
     output_dir = "/Users/usamasheikh/Documents/prefect-outputs"
     os.makedirs(output_dir, exist_ok=True)
 
-    df_actions.to_csv(f"{output_dir}/meeting_actions.csv", index=False)
-    df_decisions.to_csv(f"{output_dir}/meeting_decisions.csv", index=False)
+    df_actions.to_csv(f"{output_dir}/{actions_file}", index=False)
+    df_decisions.to_csv(f"{output_dir}/{decisions_file}", index=False)
     # df_actions.to_csv(actions_file, index=False)
     # df_decisions.to_csv(decisions_file, index=False)
 
