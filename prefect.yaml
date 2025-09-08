@@ -26,7 +26,7 @@ deployments:
   entrypoint: transcript_handler.py:all_transcripts_flow
 
   parameters:
-    data_dir: "data"
+    data_dir: "/Users/usamasheikh/Documents/Prefect-Demo/data"
 
   work_pool:
     name: demo
