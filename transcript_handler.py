@@ -60,12 +60,12 @@ def save_to_csv(data: dict, actions_file: str, decisions_file: str):
 
 
 @flow(name="Meeting Transcript Analyzer")
-def transcript_pipeline(file_path: str):
+def transcript_pipeline(file_path: str,file: str):
     logger = get_run_logger()
     transcript = load_transcript(file_path)
     raw_output = analyze_transcript(transcript)
     data = parse_json(raw_output)
-    result = save_to_csv(data, "meeting_actions.csv", "meeting_decisions.csv")
+    result = save_to_csv(data, f"{file}_actions.csv", f"{file}_decisions.csv")
     logger.info(result)
 
 OUTPUT_DIR = "/Users/usamasheikh/Documents/prefect-outputs"
@@ -90,7 +90,7 @@ def all_transcripts_flow(data_dir: str):
             continue
         logger.info(f"{data_dir}/{file}")    
         # Run your existing flow as subflow
-        transcript_pipeline(f"{data_dir}/{file}")
+        transcript_pipeline(f"{data_dir}/{file}",file)
         
         # Append to processed log
         with open(PROCESSED_LOG, "a") as f:
