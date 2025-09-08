@@ -73,7 +73,7 @@ PROCESSED_LOG = os.path.join(OUTPUT_DIR, "processed.log")
 
 
 @flow(name="All Transcripts Analyzer")
-def all_transcripts_flow(data_dir: str = "data"):
+def all_transcripts_flow(data_dir: str):
     logger = get_run_logger()
     # Load already processed files
     processed = set()
@@ -88,16 +88,16 @@ def all_transcripts_flow(data_dir: str = "data"):
         if file in processed:
             logger.info(f"⏭️ Skipping already processed file: {file}")
             continue
-
+        logger.info(f"{data_dir}/{file}")    
         # Run your existing flow as subflow
         transcript_pipeline(f"{data_dir}/{file}")
-
+        
         # Append to processed log
         with open(PROCESSED_LOG, "a") as f:
             f.write(file + "\n")
 
 
 if __name__ == "__main__":
-    all_transcripts_flow("data")
+    all_transcripts_flow("/Users/usamasheikh/Documents/Prefect-Demo/data")
 
 
